@@ -8,6 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StringTest {
+    /*
+        1.考察知识点是replace之后的对象在replace之后，是否相等
+        2.因为areSame为空呀
+        3.originalString与modifiedString不相等
+        4.没有
+     */
     @SuppressWarnings({"StringEquality", "ConstantConditions"})
     @Test
     void should_be_immutable() {
@@ -25,6 +31,12 @@ class StringTest {
         assertEquals(areSame.get(), originalString == modifiedString);
     }
 
+    /*
+        1.考察知识点是string的trim使用，去掉空格
+        2.因为areSame为空呀
+        3.trim之后去掉了originalString中所有空格，绝对不一致呀！
+        4.没有
+     */
     @SuppressWarnings({"StringEquality", "ConstantConditions"})
     @Test
     void all_modification_method_will_create_new_string() {
@@ -42,6 +54,12 @@ class StringTest {
         assertEquals(areSame.get(), originalString == modifiedString);
     }
 
+    /*
+        1.考察知识点是一个被赋值字符串在，在源字符串变动情况下，是否会变化。
+        2.因为areSame为空呀
+        3. 一个字符串变量变化了，不会影响被赋值过的字符串变量
+        4.没有
+     */
     @SuppressWarnings({"StringEquality", "ConstantConditions"})
     @Test
     void will_create_new_string_when_concat() {
@@ -60,6 +78,12 @@ class StringTest {
         assertEquals(areSame.get(), originalString == copyOfOriginalString);
     }
 
+    /*
+            1.考察substring的用法
+            2.之前partOfString为null，不可能相等
+            3.截取掉字符串中的"is great"即可
+            4.没有
+         */
     @SuppressWarnings("unused")
     @Test
     void should_taken_string_apart() {
@@ -75,6 +99,12 @@ class StringTest {
         assertEquals(expectedString, partOfString);
     }
 
+    /*
+                1.考察substring的用法
+                2.之前partOfString为null，不可能相等
+                3.截取掉字符串中的"is"即可
+                4.没有
+             */
     @SuppressWarnings("unused")
     @Test
     void should_taken_string_apart_continued() {
@@ -97,7 +127,12 @@ class StringTest {
      * - What will happen if the the starting index is greater than the ending index?
      * - What will happen if the input string is of null reference?
      */
-
+/*
+                1.考察字符串split方法使用
+                2.之前words为null，不可能相等
+                3.将字符串进行spli字符串空格之后，他就会变成字符串数组
+                4.没有
+             */
     @SuppressWarnings({"unused", "ConstantConditions"})
     @Test
     void should_break_string_into_words() {
@@ -110,7 +145,12 @@ class StringTest {
 
         assertArrayEquals(new String[]{"This", "is", "Mike"}, words);
     }
-
+    /*
+                1.考察字符串split方法使用
+                2.之前words为null，不可能相等
+                3.将字符串进行spli字符/之后，他就会变成字符串数组
+                4.没有
+             */
     @SuppressWarnings({"unused", "ConstantConditions"})
     @Test
     void should_break_string_into_words_customized() {
@@ -123,7 +163,13 @@ class StringTest {
 
         assertArrayEquals(new String[]{"This", "is", "Mike"}, words);
     }
-
+    /*
+                    1.考察字符串Stringbuilder的使用，以及StringBuidler的replace使用
+                    2.之前完全没有代码
+                    3.通过结果发现规律，其中excepted中的第一个数据"|---|\n"与最后一位一致，中间一位"|   |\n"与其他的不同的
+                    只有中间部分，所以利用for循环进行数据拼凑并利用replace进行替换，最终完成字符串
+                    4.没有
+                 */
     @SuppressWarnings({"unused", "StringBufferReplaceableByString", "MismatchedQueryAndUpdateOfStringBuilder"})
     @Test
     void should_create_ascii_art() {
@@ -157,7 +203,12 @@ class StringTest {
 
         assertEquals(expected, builder.toString());
     }
-
+    /*
+                        1.考察char内部存储是数字
+                        2.之前完全没有代码
+                        3.通过截取字符串中的每一个字符串并获得数字进行累加，获得checksum
+                        4.没有
+                     */
     @SuppressWarnings("unused")
     @Test
     void should_calculate_checksum_of_a_string() {
@@ -173,7 +224,12 @@ class StringTest {
 
         assertEquals(3655, sum);
     }
-
+    /*
+                            1.考察Unicode的使用，字符串与unicode之间需要\u去做转义
+                            2.之前完全没有代码
+                            3.将Unicode进行按需排列
+                            4.Unicode是怎样计算的？
+                         */
     @Test
     void should_convert_unicode_escape() {
         final String expected = "なにこれ";
@@ -189,7 +245,12 @@ class StringTest {
 
         assertEquals(expected, actual);
     }
-
+    /*
+                                1.数组的使用
+                                2.之前完全没有代码
+                                3.将字符串进行split分离之后，进行倒序appnd进入reversedBuilder
+                                4.Unicode是怎样计算的？
+                             */
     @SuppressWarnings("unused")
     @Test
     void should_reverse_a_string() {
@@ -207,7 +268,12 @@ class StringTest {
 
         assertEquals("654321", reversed);
     }
-
+    /*
+                                    1.string中的大小写比较使用
+                                    2.之前为null
+                                    3.取消大小写的比较，一定为true，"hello"和"HELLO"之间就差了大小写，直接相等的话，不一致
+                                    4. 没有
+                                 */
     @SuppressWarnings("ConstantConditions")
     @Test
     void should_compare_string_with_different_cases() {
@@ -226,7 +292,12 @@ class StringTest {
         assertEquals(equalResult, actualResultOfEqual);
         assertEquals(equalIgnoreCaseResult, actualResultOfEqualIgnoreCase);
     }
-
+    /*
+                                        1.String的format的使用
+                                        2.之前为null
+                                        3.name和age替换了，拼凑后输出最终的字符串
+                                        4. 没有
+                                     */
     @Test
     void should_format_string() {
         final String name = "Harry";
